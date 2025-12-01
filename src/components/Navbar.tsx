@@ -11,15 +11,14 @@ export function Navbar() {
         <ul className="flex items-center gap-10 *:font-semibold">
           <li>홈</li>
           <li>소개</li>
-          <li>장점</li>
-          <li>판매가이드</li>
+          <li>고객약속</li>
           <li>구매후기</li>
           <li>
             <Link
               href="/"
               className="group bg-main flex items-center gap-1 rounded-2xl px-3 py-1 text-white shadow"
             >
-              <Headset className="size-5 group-hover:animate-bounce" />
+              <Headset className="size-4" />
               상담신청
             </Link>
           </li>
