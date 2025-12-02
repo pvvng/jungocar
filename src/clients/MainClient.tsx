@@ -39,10 +39,42 @@ const chats = [
 ];
 
 const reviews = [
-  { id: "1", title: "bmw 5 시리즈 구매후기", image: "/images/bmw.webp" },
-  { id: "2", title: "bmw 5 시리즈 구매후기", image: "/images/bmw.webp" },
-  { id: "3", title: "bmw 5 시리즈 구매후기", image: "/images/bmw.webp" },
-  { id: "4", title: "bmw 5 시리즈 구매후기", image: "/images/bmw.webp" },
+  {
+    id: "1",
+    title: "bmw 5 시리즈 구매후기",
+    desc: "처음 타는 순간부터 조향감이 그냥 다르더라. 고속에서도 차가 길에 딱 붙어가는 느낌이 너무 안정적임. 연비는 기대 안 했는데 생각보다 괜찮아서 만족! 가속할 때 나는 직렬 6기통 사운드가 미쳤음… 방금 산 차인데도 또 타고 싶어지는 중독성 있는 드라이빙. 유지비가 조금 쎄긴 한데 솔직히 다 용서됨.",
+    image: "/images/bmw.webp",
+  },
+  {
+    id: "2",
+    title: "bmw 5 시리즈 구매후기",
+    desc: "처음 타는 순간부터 조향감이 그냥 다르더라. 고속에서도 차가 길에 딱 붙어가는 느낌이 너무 안정적임. 연비는 기대 안 했는데 생각보다 괜찮아서 만족! 가속할 때 나는 직렬 6기통 사운드가 미쳤음… 방금 산 차인데도 또 타고 싶어지는 중독성 있는 드라이빙. 유지비가 조금 쎄긴 한데 솔직히 다 용서됨.",
+    image: "/images/bmw.webp",
+  },
+  {
+    id: "3",
+    title: "bmw 5 시리즈 구매후기",
+    desc: "처음 타는 순간부터 조향감이 그냥 다르더라. 고속에서도 차가 길에 딱 붙어가는 느낌이 너무 안정적임. 연비는 기대 안 했는데 생각보다 괜찮아서 만족! 가속할 때 나는 직렬 6기통 사운드가 미쳤음… 방금 산 차인데도 또 타고 싶어지는 중독성 있는 드라이빙. 유지비가 조금 쎄긴 한데 솔직히 다 용서됨.",
+    image: "/images/bmw.webp",
+  },
+  {
+    id: "4",
+    title: "bmw 5 시리즈 구매후기",
+    desc: "처음 타는 순간부터 조향감이 그냥 다르더라. 고속에서도 차가 길에 딱 붙어가는 느낌이 너무 안정적임. 연비는 기대 안 했는데 생각보다 괜찮아서 만족! 가속할 때 나는 직렬 6기통 사운드가 미쳤음… 방금 산 차인데도 또 타고 싶어지는 중독성 있는 드라이빙. 유지비가 조금 쎄긴 한데 솔직히 다 용서됨.",
+    image: "/images/bmw.webp",
+  },
+  {
+    id: "5",
+    title: "bmw 5 시리즈 구매후기",
+    desc: "처음 타는 순간부터 조향감이 그냥 다르더라. 고속에서도 차가 길에 딱 붙어가는 느낌이 너무 안정적임. 연비는 기대 안 했는데 생각보다 괜찮아서 만족! 가속할 때 나는 직렬 6기통 사운드가 미쳤음… 방금 산 차인데도 또 타고 싶어지는 중독성 있는 드라이빙. 유지비가 조금 쎄긴 한데 솔직히 다 용서됨.",
+    image: "/images/bmw.webp",
+  },
+  {
+    id: "6",
+    title: "bmw 5 시리즈 구매후기",
+    desc: "처음 타는 순간부터 조향감이 그냥 다르더라. 고속에서도 차가 길에 딱 붙어가는 느낌이 너무 안정적임. 연비는 기대 안 했는데 생각보다 괜찮아서 만족! 가속할 때 나는 직렬 6기통 사운드가 미쳤음… 방금 산 차인데도 또 타고 싶어지는 중독성 있는 드라이빙. 유지비가 조금 쎄긴 한데 솔직히 다 용서됨.",
+    image: "/images/bmw.webp",
+  },
 ];
 
 export function MainClient() {
@@ -59,7 +91,7 @@ export function MainClient() {
               {/* 백그라운드 이미지 */}
               <Image src={item.image} alt={item.title} fill className="-z-20 object-cover" />
               {/* 딤드 */}
-              <div className="pointer-events-none absolute inset-0 -z-10 h-full w-full bg-black/80" />
+              <div className="pointer-events-none absolute inset-0 -z-10 h-full w-full bg-black/40" />
               {/* 콘텐츠 */}
               <div className="flex h-full w-full flex-col items-start justify-center p-8 px-24">
                 <p className="mb-2 text-start text-2xl font-extrabold tracking-tight whitespace-break-spaces text-white">
@@ -264,23 +296,17 @@ export function MainClient() {
 
       <SectionWrapper type="white" className="text-start">
         <p className="text-main mb-2 text-lg font-medium">믿을 수 있는 실제 후기</p>
-        <h2 className="mb-6 text-4xl font-extrabold">고객님들의 실제 후기를 확인해보세요.</h2>
+        <h2 className="mb-8 text-4xl font-extrabold">고객님들의 실제 후기를 확인해보세요.</h2>
         <Link
           href="/"
-          className="group z-10 mb-10 inline-block rounded bg-neutral-200 px-8 py-2 text-lg font-semibold text-black transition-transform hover:scale-95"
+          className="group z-10 mb-12 inline-block rounded bg-neutral-200 px-8 py-2 text-lg font-semibold text-black transition-transform hover:scale-95"
         >
-          후기 더보기 →
+          모든 후기 →
         </Link>
         <ReviewTab data={reviews} />
       </SectionWrapper>
 
-      {/* 특가차량 */}
-      <SectionWrapper type="gray" className="text-start">
-        <p>특가 차량</p>
-        <p>제작중</p>
-      </SectionWrapper>
-
-      <section className="bg-dark-bg-gray text-white">
+      <footer className="bg-dark-bg-gray text-white">
         <div className="relative mx-auto max-w-screen-lg px-4 py-16">
           <p>"차 한대 이상의 가치를 전합니다."</p>
           <p className="mb-8 text-2xl font-extrabold">
@@ -294,7 +320,7 @@ export function MainClient() {
             신용 등급에 따라 월 납입금이 달라질 수 있습니다.
           </p>
         </div>
-      </section>
+      </footer>
     </main>
   );
 }

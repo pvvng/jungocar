@@ -13,7 +13,6 @@ export function Navbar() {
           <li>소개</li>
           <li>고객약속</li>
           <li>구매후기</li>
-          <li>특가차량</li>
           <li>
             <Link
               href="/"
