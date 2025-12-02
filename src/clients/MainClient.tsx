@@ -5,7 +5,7 @@ import { ChatBubble } from "@/components/ChatBubble";
 import { Navbar } from "@/components/Navbar";
 import Phone from "@/components/Phone";
 import { ReviewTab } from "@/components/ReviewTab";
-import { SectionWrapper } from "@/components/SectionWrapper";
+import { SectionWrapper } from "@/components/Section/SectionWrapper";
 import Image from "next/image";
 import Link from "next/link";
 
