@@ -1,30 +1,32 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Headset, Menu, X } from "lucide-react";
+import { useState, useRef } from "react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import gsap from "gsap";
+import { usePathname } from "next/navigation";
+
+const menus = [
+  { label: "홈", link: "" },
+  { label: "소개", link: "introduce" },
+  { label: "리스차량소개", link: "cars" },
+  { label: "구매후기", link: "review" },
+  { label: "상담신청", link: "inquiry" },
+];
 
 export function Navbar() {
+  const pathname = usePathname();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    if (!menuRef.current) return;
-
-    if (menuOpen) {
-      // 메뉴가 열릴 때 stagger 애니메이션
-      gsap.fromTo(
-        menuRef.current.children,
-        { opacity: 0, y: -10 },
-        { opacity: 1, y: 0, stagger: 0.1, duration: 0.3, ease: "back.out(1.7)" },
-      );
-    }
-  }, [menuOpen]);
+  const isActive = (link: string) => {
+    const fullPath = "/" + link; // ''이면 '/'
+    return pathname === fullPath;
+  };
 
   return (
     <nav className="sticky inset-0 z-50 w-full border-b border-b-neutral-200 bg-white/80 backdrop-blur-sm">
-      <div className="relative mx-auto flex max-w-screen-lg items-center justify-between p-3 md:p-4">
+      <div className="relative mx-auto flex max-w-screen-xl items-center justify-between p-4">
         <Link href="/" className="text-main text-2xl font-extrabold md:text-3xl">
           승계랜드
         </Link>
@@ -38,20 +40,22 @@ export function Navbar() {
         </button>
 
         {/* 데스크탑 메뉴 */}
-        <ul className="hidden items-center gap-10 *:font-medium md:flex">
-          <li>홈</li>
-          <li>소개</li>
-          <li>고객약속</li>
-          <li>구매후기</li>
-          <li>
-            <Link
-              href="/"
-              className="group bg-main flex items-center gap-1 rounded-2xl px-3 py-1 text-white shadow"
-            >
-              <Headset className="size-4" />
-              상담신청
-            </Link>
-          </li>
+        <ul className="hidden items-center gap-8 *:font-medium md:flex">
+          {menus.map(({ label, link }) => (
+            <li key={label + link}>
+              <Link
+                href={`/${link}`}
+                className={
+                  "block transition " +
+                  (isActive(link)
+                    ? "text-main font-bold" // 활성 메뉴 스타일
+                    : "hover:text-main text-black")
+                }
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* 모바일 메뉴 */}
@@ -60,19 +64,21 @@ export function Navbar() {
             ref={menuRef}
             className="absolute top-[110%] right-3 flex w-40 flex-col gap-2 rounded-md border border-neutral-200 bg-white p-3 shadow md:hidden"
           >
-            <li className="rounded p-2 hover:bg-neutral-200">홈</li>
-            <li className="rounded p-2 hover:bg-neutral-200">소개</li>
-            <li className="rounded p-2 hover:bg-neutral-200">고객약속</li>
-            <li className="rounded p-2 hover:bg-neutral-200">구매후기</li>
-            <li>
-              <Link
-                href="/"
-                className="bg-main flex items-center justify-center gap-1 rounded px-3 py-1 text-center text-white shadow transition hover:scale-95"
+            {menus.map(({ label, link }) => (
+              <li
+                key={label + link}
+                className={
+                  "rounded p-2 transition " +
+                  (isActive(link)
+                    ? "bg-main font-semibold text-white"
+                    : "bg-transparent hover:bg-neutral-200")
+                }
               >
-                <Headset className="size-4" />
-                상담신청
-              </Link>
-            </li>
+                <Link href={`/${link}`} className="block">
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         )}
       </div>

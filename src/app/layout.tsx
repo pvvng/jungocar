@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { pretendard } from "@/styles/font";
 import "./globals.css";
+import { Navbar } from "@/components/Navbar";
+import { KakaoLinkButton } from "@/components/KakaoLinkButton";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +19,9 @@ export default function RootLayout({
       <body
         className={`${pretendard.className} h-full min-h-screen w-full overflow-auto text-black`}
       >
+        <Navbar />
         {children}
+        <KakaoLinkButton />
       </body>
     </html>
   );
