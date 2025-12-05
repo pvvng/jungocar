@@ -8,7 +8,7 @@ export default function Introduce() {
   return (
     <main>
       <DimmedImageBanner
-        title="소개"
+        title="리스 가이드"
         descriptions={["텍스트를 입력하세요.", "(배너 배경으로 이미지 애니메이션)"]}
       />
 
@@ -51,23 +51,6 @@ export default function Introduce() {
             <ImageSpace key={idx} className="aspect-9/10" />
           ))}
         </div>
-      </SectionWrapper>
-
-      <SectionWrapper type="gray">
-        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
-        <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
-        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
-        <div className="flex items-center justify-center gap-4 md:gap-8">
-          <ImageSpace width={150} height={150} />
-          <p className="text-base font-extrabold text-neutral-600 md:text-3xl">vs.</p>
-          <ImageSpace width={300} height={300} />
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper type="white" className="text-start">
-        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
-        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
-        <Timeline />
       </SectionWrapper>
     </main>
   );

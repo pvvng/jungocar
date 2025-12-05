@@ -3,6 +3,7 @@ import { CarouselBanner } from "@/components/CarouselBanner";
 import { ExplainGrid } from "@/components/ExplainGrid";
 import { ImageSpace } from "@/components/ImageSpace";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import { Timeline } from "@/components/Timeline";
 import { Check } from "lucide-react";
 import Link from "next/link";
 
@@ -35,8 +36,25 @@ export default function Home() {
         }
       />
 
-      {/* 소개? */}
+      {/* 리스가이드 이동 섹션 */}
       <SectionWrapper type="gray">
+        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
+        <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <div className="flex items-center justify-center gap-4 md:gap-8">
+          <ImageSpace width={300} height={300} desc="완납 승계" />
+          <p className="text-base font-extrabold text-neutral-600 md:text-3xl">vs</p>
+          <ImageSpace width={300} height={300} desc="위탁 승계" />
+        </div>
+        <Link
+          href="/"
+          className="bg-main mx-auto mt-12 block max-w-fit rounded px-4 py-2 text-lg font-semibold text-white transition hover:scale-95 md:px-5 md:py-3"
+        >
+          리스 가이드 확인하기
+        </Link>
+      </SectionWrapper>
+
+      <SectionWrapper type="white">
         <h2 className="mb-3 text-3xl font-bold md:text-4xl">제목을 입력하세요.</h2>
         <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
         <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
@@ -47,12 +65,12 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <Link
-          href="/"
-          className="bg-main mx-auto mt-12 block max-w-fit rounded px-4 py-2 text-lg font-semibold text-white transition hover:scale-95 md:px-5 md:py-3"
-        >
-          다른 페이지로 이동
-        </Link>
+      </SectionWrapper>
+
+      <SectionWrapper type="gray" className="text-start">
+        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
+        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <Timeline />
       </SectionWrapper>
 
       {/* 승계 리스트 */}
@@ -70,7 +88,7 @@ export default function Home() {
         </div>
 
         <Link
-          href="/cars"
+          href="/vehicle"
           className="mt-12 block max-w-fit rounded bg-gray-200 px-4 py-2 text-lg font-semibold transition hover:scale-95 md:mx-auto md:px-5 md:py-3"
         >
           승계차량 더보기

@@ -1,36 +1,18 @@
 import { ImageSpace } from "@/components/ImageSpace";
 
-const vehicleInfo = [
-  { label: "차종", value: "중형차" },
-  { label: "배기량", value: "2,000cc" },
-  { label: "차량번호", value: "60도8099" },
-  { label: "연식", value: "2011년 11월" },
-  { label: "주행거리", value: "117,357Km" },
-
-  { label: "색상", value: "흰색" },
-  { label: "변속기", value: "오토" },
-  { label: "연료", value: "휘발유" },
-  { label: "제시번호", value: "20251504432" },
-  { label: "사고유무", value: "무사고" },
-
-  { label: "등록번호", value: "49606423" },
-  { label: "제시일", value: "2025-10-21" },
-  { label: "압류 / 저당", value: "없음 / 없음" },
-];
-
 export default async function VehicleDetail() {
   return (
-    <main className="mx-auto max-w-screen-xl space-y-12 p-4 py-8">
+    <main className="mx-auto max-w-screen-xl space-y-8 p-4 py-8">
       {/* 헤더 */}
       <header className="mx-auto flex max-w-screen-xl items-end justify-between">
         <div>
-          <span className="bg-main mb-1 inline-block rounded-full px-2 py-0.5 text-sm font-medium text-white">
+          <span className="bg-main mb-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium text-white">
             무사고
           </span>
-          <h1 className="mb-2 flex items-center justify-center gap-2 text-2xl font-semibold">
-            <p>제목을 입력해주세요.</p>
-          </h1>
-          <p className="text-base text-neutral-700">설명1 · 설명2 · 설명3· 설명4</p>
+          <h1 className="mb-3 text-2xl font-semibold">기아 신형K5 하이브리드 2.0 HEV 프레스티지</h1>
+          <p className="text-base text-neutral-600">
+            23년11월식 (2023년형) · 33,000km · 휘발유 · 검정 · 오토
+          </p>
         </div>
         <div className="flex items-center justify-center">
           <div className="border-r border-neutral-300 px-5 text-center">
@@ -59,7 +41,7 @@ export default async function VehicleDetail() {
       </section>
 
       {/* 요약 */}
-      <section>
+      {/* <section>
         <h2 className="mb-5 text-2xl font-semibold">차량 요약</h2>
         <div className="grid w-full grid-cols-5 gap-5 rounded-2xl bg-gray-100 p-5">
           {vehicleInfo.map(({ label, value }) => (
@@ -69,16 +51,32 @@ export default async function VehicleDetail() {
             </div>
           ))}
         </div>
+      </section> */}
+
+      <hr className="border-neutral-200" />
+
+      <section>
+        <h2 className="mb-5 text-2xl font-semibold">차량 옵션</h2>
+        <div className="grid grid-cols-6 gap-5">
+          {Array.from({ length: 12 }).map((_, idx) => (
+            <div key={idx} className="w-full">
+              <ImageSpace className="aspect-square" desc={`옵션 ${idx + 1}`} />
+            </div>
+          ))}
+        </div>
       </section>
 
+      <hr className="border-neutral-200" />
+
       {/* 렌트 정보 */}
+      {/* 뭐하는건지 몰겠음... */}
       <section>
         <h2 className="mb-5 text-2xl font-semibold">렌트 정보</h2>
 
         <div className="mb-3 flex items-center text-lg font-semibold">
           <p className="w-[180px] py-3">차량 계약 시 비용</p>
           <div className="flex w-full items-center justify-between py-3">
-            <p className="text-[15px] font-light text-neutral-600">승계지원금</p>
+            <p className="font-light text-neutral-600">승계지원금</p>
             <p className="text-main">300만원</p>
           </div>
         </div>
@@ -86,7 +84,7 @@ export default async function VehicleDetail() {
         <div className="mb-3 flex items-center text-lg font-semibold">
           <p className="w-[180px] py-3">차량 계약 시 비용</p>
           <div className="flex w-full items-center justify-between py-3">
-            <p className="text-[15px] font-light text-neutral-600">월 렌트료 115만원 X 45개월</p>
+            <p className="font-light text-neutral-600">월 렌트료 115만원 X 45개월</p>
             <p className="text-red-600">5,175만원</p>
           </div>
         </div>
@@ -94,18 +92,17 @@ export default async function VehicleDetail() {
         <div className="flex items-center text-lg font-semibold">
           <p className="w-[180px] py-3">차량 계약 시 비용</p>
           <div className="flex w-full items-center justify-between py-3">
-            <select className="cursor-pointer border-b border-neutral-300 py-2 text-base text-[15px] focus:outline-none">
-              <option selected>인수 (렌트사에게 지급)</option>
+            <select className="cursor-pointer border-b border-neutral-300 py-2 text-base focus:outline-none">
+              <option>인수 (렌트사에게 지급)</option>
               <option>반납 (보증급 환급)</option>
             </select>
             <p className="text-red-600">300만원</p>
           </div>
         </div>
 
-        <hr className="my-3 border-neutral-200" />
-        <div className="flex items-center justify-between text-xl font-semibold">
+        <div className="bg-main mt-8 flex items-center justify-between rounded-2xl p-4 text-2xl font-semibold text-white">
           <p className="w-[180px] py-3">총 비용</p>
-          <p className="py-3 text-red-600">8,425만원</p>
+          <p className="py-3 text-white">4,575만원</p>
         </div>
       </section>
     </main>

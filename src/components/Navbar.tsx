@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 
 const menus = [
   { label: "홈", link: "" },
-  { label: "소개", link: "introduce" },
-  { label: "리스차량소개", link: "vehicle" },
+  { label: "승계 가이드", link: "guide" },
+  { label: "승계 차량 소개", link: "vehicle" },
   { label: "구매후기", link: "review" },
   { label: "상담신청", link: "inquiry" },
 ];
