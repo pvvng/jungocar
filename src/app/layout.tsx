@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { pretendard } from "@/styles/font";
 import "./globals.css";
+import { Navbar } from "@/components/Navbar";
+import { FloatingButtonGroup } from "@/components/FloatingButtonGroup";
+import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,11 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable} h-full min-h-screen`}>
-      <body
-        className={`${pretendard.className} h-full min-h-screen w-full overflow-auto text-black`}
-      >
+    <html lang="ko" className={`${pretendard.variable} `}>
+      <body className={`${pretendard.className} w-full overflow-auto text-black`}>
+        <Navbar />
         {children}
+        <FloatingButtonGroup />
+        <Footer />
       </body>
     </html>
   );

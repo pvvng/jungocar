@@ -14,12 +14,12 @@ interface IndicatorType {
  */
 export function Indicator({ dataLength, currentIndex, onDotClick }: IndicatorType) {
   return (
-    <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 gap-2">
+    <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-2">
       {Array.from({ length: dataLength }).map((_, idx) => (
         <div
           key={idx}
           onClick={() => onDotClick?.(idx)} // 클릭 시 인덱스 변경
-          className={`h-3 cursor-pointer rounded-full bg-slate-100 transition-all duration-300 ${
+          className={`h-3 cursor-pointer rounded-full bg-gray-200 shadow transition-all duration-300 ${
             currentIndex === idx ? "w-10" : "w-3"
           }`}
         ></div>

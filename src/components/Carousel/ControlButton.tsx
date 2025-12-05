@@ -20,7 +20,7 @@ export function ControlButton({ type, handler }: ControlButtonType) {
       onClick={handler}
       className={`${
         isPrevType ? "left-4" : "right-4"
-      } absolute top-1/2 flex size-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-slate-100 shadow transition hover:bg-white`}
+      } absolute top-1/2 flex size-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-gray-200 shadow transition hover:scale-95`}
       aria-label={isPrevType ? "Prev Slide" : "Next Slide"}
     >
       {isPrevType ? <ChevronLeft /> : <ChevronRight />}
