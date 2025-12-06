@@ -1,57 +1,76 @@
+import { GalleryCarousel } from "@/components/GalleryCarousel";
 import { ImageSpace } from "@/components/ImageSpace";
+import { formatNumber } from "@/utils/formatNumber";
 
 export default async function VehicleDetail() {
+  // mock
+  const vehicle = {
+    id: 4,
+    title: "소나타 뉴라이즈",
+    model: "LF ",
+    year: "2019",
+    mileage: 45000,
+    price: 1500,
+    monthFee: 52,
+    supportFee: 0,
+    color: "흰색",
+    fuelType: "가솔린",
+    gearType: "오토",
+    accidentHistory: 0,
+    images: Array.from({ length: 13 }).map(() => "/images/bmw.webp"),
+    options: ["후방카메라", "스마트키"],
+  };
+
   return (
     <main className="mx-auto max-w-screen-xl space-y-8 p-4 py-8">
       {/* 헤더 */}
-      <header className="mx-auto flex max-w-screen-xl items-end justify-between">
+      <header className="mx-auto flex max-w-screen-xl flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
-          <span className="bg-main mb-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium text-white">
-            무사고
-          </span>
-          <h1 className="mb-3 text-2xl font-semibold">기아 신형K5 하이브리드 2.0 HEV 프레스티지</h1>
-          <p className="text-base text-neutral-600">
-            23년11월식 (2023년형) · 33,000km · 휘발유 · 검정 · 오토
+          {vehicle.accidentHistory === 0 && (
+            <span className="bg-main mb-3 inline-block rounded-full px-2 py-0.5 text-xs font-medium text-white">
+              무사고
+            </span>
+          )}
+          <h1 className="mb-2 text-2xl font-semibold">
+            {vehicle.title} · {vehicle.model}
+          </h1>
+          <p className="text-base font-semibold text-neutral-600">
+            {vehicle.year}년 · {formatNumber(vehicle.mileage)}km · {vehicle.fuelType} ·{" "}
+            {vehicle.gearType} · {vehicle.color}
           </p>
         </div>
-        <div className="flex items-center justify-center">
-          <div className="border-r border-neutral-300 px-5 text-center">
-            <p className="text-neutral-500">차량 가격</p>
-            <p className="text-lg font-bold">4,875만원</p>
-          </div>
-          <div className="border-r border-neutral-300 px-5 text-center">
-            <p className="text-neutral-500">승계지원금</p>
-            <p className="text-main text-lg font-bold">300만원</p>
-          </div>
-          <div className="px-5 text-center">
-            <p className="text-neutral-500">월 렌트료(45개월)</p>
-            <p className="text-lg font-bold text-red-600">115만원</p>
+        {/* price field */}
+        <div className="w-full rounded-2xl bg-gray-100 p-4 shadow md:max-w-[360px]">
+          <div className="grid grid-cols-3 gap-5">
+            {/* 차량 가격 */}
+            <div className="text-center">
+              <p className="text-sm leading-tight text-neutral-500">차량 가격</p>
+              <p className="mt-1.5 text-lg leading-none font-semibold">
+                {formatNumber(vehicle.price)}만원
+              </p>
+            </div>
+
+            {/* 승계지원금 */}
+            <div className="text-center">
+              <p className="text-sm leading-tight text-neutral-500">승계지원금</p>
+              <p className="text-main mt-1.5 text-lg leading-none font-semibold">
+                {formatNumber(vehicle.supportFee)}만원
+              </p>
+            </div>
+
+            {/* 월 렌트료 */}
+            <div className="text-center">
+              <p className="text-sm leading-tight text-neutral-500">월 렌트료</p>
+              <p className="text-main mt-1.5 text-lg leading-none font-semibold">
+                {formatNumber(vehicle.monthFee)}만원
+              </p>
+            </div>
           </div>
         </div>
       </header>
 
       {/* images */}
-      <section className="mt-8 grid grid-cols-2 gap-0.5">
-        <ImageSpace className="aspect-square rounded-none" />
-        <div className="grid w-full grid-cols-4 gap-0.5">
-          {Array.from({ length: 16 }).map((_, idx) => (
-            <ImageSpace key={idx} className="aspect-square rounded-none" />
-          ))}
-        </div>
-      </section>
-
-      {/* 요약 */}
-      {/* <section>
-        <h2 className="mb-5 text-2xl font-semibold">차량 요약</h2>
-        <div className="grid w-full grid-cols-5 gap-5 rounded-2xl bg-gray-100 p-5">
-          {vehicleInfo.map(({ label, value }) => (
-            <div key={value + label} className="space-y-3 rounded-2xl p-4">
-              <p className="text-neutral-500">{label}</p>
-              <p className="font-medium text-neutral-900">{value}</p>
-            </div>
-          ))}
-        </div>
-      </section> */}
+      <GalleryCarousel key={vehicle.id} images={vehicle.images} />
 
       <hr className="border-neutral-200" />
 

@@ -3,6 +3,7 @@ import CarTypeSlider from "@/components/CarTypeSlider";
 import { DimmedImageBanner } from "@/components/DimmedImageBanner";
 import Pagination from "@/components/Pagination";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import { VehicleCard } from "@/components/VehicleCard";
 import { Search } from "lucide-react";
 
 interface Iparms {
@@ -16,25 +17,41 @@ export default async function Cars({ searchParams }: Iparms) {
     page = 1;
   }
 
+  // mock data
+  const vehicles = await (async () => {
+    // await new Promise((r) => setTimeout(r, 3000));
+    return Array.from({ length: 12 }).map((_, id) => ({
+      id,
+      title: "소나타 뉴라이즈",
+      thumbnail: null,
+      year: "2019",
+      price: 1500,
+      mileage: 45000,
+      fuelType: "가솔린",
+      gearType: "오토",
+      color: "흰색",
+    }));
+  })();
+
   return (
     <main>
       <DimmedImageBanner
         title="리스 차량 소개"
         descriptions={["텍스트를 입력하세요.", "(배너 배경으로 이미지 애니메이션)"]}
-        imageSrc=""
+        imageSrc="/images/main0.webp"
       />
 
       <SectionWrapper type="white" className="space-y-8">
         <CarTypeSlider />
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
           <p className="text-neutral-700">
             총 <span className="font-semibold text-neutral-950">2000</span>대의 차량이 있습니다.
           </p>
           <CarSearchInput />
         </div>
-        <div className="grid grid-cols-1 gap-6 text-start sm:grid-cols-3 lg:grid-cols-4">
-          {Array.from({ length: 12 }).map((_, idx) => (
-            <Card key={idx} />
+        <div className="grid grid-cols-1 gap-6 text-start sm:grid-cols-2 lg:grid-cols-3">
+          {vehicles.map((vehicle) => (
+            <VehicleCard key={vehicle.id} {...vehicle} />
           ))}
         </div>
 
