@@ -43,25 +43,27 @@ export const GalleryCarousel = memo(({ images }: GalleryProps) => {
   }, [currentIdx, images]);
 
   return (
-    <section className="mt-8">
-      <DesktopGallery
-        images={images}
-        currentIdx={currentIdx}
-        goPrev={goPrev}
-        goNext={goNext}
-        goTo={goTo}
-        toggleOpenZoom={toggleOpenZoom}
-      />
+    <section className="bg-white">
+      <div className="container mx-auto px-4 pb-12">
+        <DesktopGallery
+          images={images}
+          currentIdx={currentIdx}
+          goPrev={goPrev}
+          goNext={goNext}
+          goTo={goTo}
+          toggleOpenZoom={toggleOpenZoom}
+        />
 
-      <MobileGallery
-        images={images}
-        currentIdx={currentIdx}
-        thumbContainerRef={thumbContainerRef}
-        goPrev={goPrev}
-        goNext={goNext}
-        goTo={goTo}
-        toggleOpenZoom={toggleOpenZoom}
-      />
+        <MobileGallery
+          images={images}
+          currentIdx={currentIdx}
+          thumbContainerRef={thumbContainerRef}
+          goPrev={goPrev}
+          goNext={goNext}
+          goTo={goTo}
+          toggleOpenZoom={toggleOpenZoom}
+        />
+      </div>
     </section>
   );
 });
