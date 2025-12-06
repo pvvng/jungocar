@@ -5,6 +5,7 @@ import { ImageSpace } from "@/components/ImageSpace";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { Timeline } from "@/components/Timeline";
 import { Check } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -38,26 +39,49 @@ export default function Home() {
 
       {/* 리스가이드 이동 섹션 */}
       <SectionWrapper type="gray">
-        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
-        <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
-        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <h2 className="mb-5 text-2xl font-bold md:text-3xl">
+          완납 승계와 위탁 승계의 차이, 알고 계신가요?
+        </h2>
+        <p className="text-base text-neutral-700 md:text-lg">
+          리스를 넘기거나 인수할 때 선택할 수 있는 두 가지 방식입니다.
+        </p>
+        <p className="text-base text-neutral-700 md:text-lg">
+          <strong className="text-main">완납 승계</strong>는 남은 리스금을 모두 정리하고 차량만
+          인수하는 방식,
+        </p>
+        <p className="mb-8 text-base text-neutral-700 md:text-lg">
+          <strong className="text-main">위탁 승계</strong>는 전문 업체가 승계 절차를 대신 처리해주는
+          방식이에요.
+        </p>
         <div className="flex items-center justify-center gap-4 md:gap-8">
-          <ImageSpace width={300} height={300} desc="완납 승계" />
+          <Image
+            src="/images/installment.webp"
+            alt="완납승계"
+            width={200}
+            height={200}
+            draggable={false}
+          />
           <p className="text-base font-extrabold text-neutral-600 md:text-3xl">vs</p>
-          <ImageSpace width={300} height={300} desc="위탁 승계" />
+          <Image
+            src="/images/bill.webp"
+            alt="완납승계"
+            width={200}
+            height={200}
+            draggable={false}
+          />
         </div>
         <Link
-          href="/"
-          className="bg-main mx-auto mt-12 block max-w-fit rounded px-4 py-2 text-lg font-semibold text-white transition hover:scale-95 md:px-5 md:py-3"
+          href="/guide"
+          className="bg-main mx-auto mt-12 block max-w-fit rounded px-4 py-2 font-semibold text-white shadow transition hover:scale-95 md:px-5 md:py-3"
         >
-          리스 가이드 확인하기
+          승계 가이드 확인하기
         </Link>
       </SectionWrapper>
 
       <SectionWrapper type="white">
         <h2 className="mb-3 text-3xl font-bold md:text-4xl">제목을 입력하세요.</h2>
-        <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
-        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <p className="mb-0.5 text-base text-neutral-700 md:text-lg">텍스트를 입력하세요.</p>
+        <p className="mb-8 text-base text-neutral-700 md:text-lg">텍스트를 입력하세요.</p>
         <div className="grid grid-cols-4 gap-5 md:grid-cols-4">
           {Array.from({ length: 4 }).map((_, idx) => (
             <div key={idx} className="aspect-square w-full">
@@ -67,9 +91,33 @@ export default function Home() {
         </div>
       </SectionWrapper>
 
+      <SectionWrapper type="gray">
+        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
+        <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <div className="space-y-5">
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <div key={idx} className="mx-auto w-full max-w-[800px] rounded-2xl bg-white p-5 shadow">
+              텍스트를 입력하세요.
+            </div>
+          ))}
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper type="white" className="text-start">
+        <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
+        <p className="text-neutral-70 mb-0.5 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <div className="grid grid-cols-3 gap-10">
+          {Array.from({ length: 3 }).map((_, idx) => (
+            <ImageSpace key={idx} className="aspect-9/10" />
+          ))}
+        </div>
+      </SectionWrapper>
+
       <SectionWrapper type="gray" className="text-start">
         <h2 className="mb-3 text-2xl font-bold md:text-3xl">제목을 입력하세요.</h2>
-        <p className="text-neutral-70 mb-8 text-base md:text-lg">텍스트를 입력하세요.</p>
+        <p className="mb-8 text-base text-neutral-700 md:text-lg">텍스트를 입력하세요.</p>
         <Timeline />
       </SectionWrapper>
 

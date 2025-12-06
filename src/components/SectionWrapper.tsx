@@ -7,7 +7,7 @@ interface SectionWrapperProps {
 
 export function SectionWrapper({ id, type, className = "", children }: SectionWrapperProps) {
   // type에 따른 배경/텍스트 색상 결정
-  const baseClass = "relative mx-auto max-w-screen-xl px-4 py-16 text-center";
+  const baseClass = "relative mx-auto container px-4 py-12 text-center";
   const typeClass = (() => {
     switch (type) {
       case "white":
