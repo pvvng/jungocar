@@ -139,7 +139,7 @@ export default function LeaseGuidePage() {
       </SectionWrapper>
 
       {/* FAQ / CTA */}
-      <SectionWrapper type="white" className="!py-0 text-start">
+      <SectionWrapper type="white" className="!pt-0 text-start">
         <h3 className="mb-6 text-xl font-bold">자주 묻는 질문</h3>
         <div className="space-y-4">
           <details>
@@ -168,24 +168,6 @@ export default function LeaseGuidePage() {
               보험 및 세금은 리스 조건 및 업체 도움 여부에 따라 달라질 수 있습니다.
             </p>
           </details>
-        </div>
-      </SectionWrapper>
-
-      <SectionWrapper type="white" className="text-start">
-        <p className="mb-3 text-lg font-semibold">이제 승계를 시작해볼까요?</p>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/vehicle"
-            className="bg-main block max-w-fit rounded-lg px-4 py-2 font-semibold text-white shadow transition hover:scale-90"
-          >
-            승계 가능한 차량 보기
-          </Link>
-          <Link
-            href="/vehicle"
-            className="block max-w-fit rounded-lg border border-neutral-200 bg-white px-4 py-2 font-semibold text-black shadow transition hover:scale-90"
-          >
-            상담 신청
-          </Link>
         </div>
       </SectionWrapper>
     </main>
@@ -307,8 +289,7 @@ function RecommendationPanel({ selectedId }: { selectedId: string | null }) {
         "기존 계약자 잔여금 명세 확인 필요",
       ],
       img: "/images/installment.webp",
-      cta1: { href: "/vehicle?filter=complete", label: "완납 승계 차량 보기" },
-      cta2: { href: "/contact", label: "문의하기" },
+      cta: { href: "/vehicle", label: "승계 차량 보기" },
       icon: HandCoins,
       color: "from-main/20 to-main/5",
     },
@@ -317,8 +298,7 @@ function RecommendationPanel({ selectedId }: { selectedId: string | null }) {
       desc: "절차를 업체가 대행해주길 원한다면 적합해요.",
       bullets: ["매칭·서류·심사 전체 대행", "가장 간편하고 안전한 방식", "일부 수수료 발생 가능"],
       img: "/images/receipt.webp",
-      cta1: { href: "/service/consignment", label: "위탁 승계 신청" },
-      cta2: { href: "/contact", label: "상담 요청" },
+      cta: { href: "/vehicle", label: "승계 차량 보기" },
       icon: ReceiptText,
       color: "from-indigo-200/30 to-indigo-50/40",
     },
@@ -387,16 +367,10 @@ function RecommendationPanel({ selectedId }: { selectedId: string | null }) {
         {/* CTA 영역 */}
         <div className="mt-4 flex items-center justify-start gap-2">
           <Link
-            href={cfg.cta1.href}
+            href={cfg.cta.href}
             className="bg-main max-w-fit rounded-lg px-4 py-2 text-center text-sm font-semibold text-white shadow transition hover:scale-95"
           >
-            {cfg.cta1.label}
-          </Link>
-          <Link
-            href={cfg.cta2.href}
-            className="max-w-fit rounded-lg bg-white px-4 py-2 text-center text-sm font-semibold text-black backdrop-blur transition hover:scale-95"
-          >
-            {cfg.cta2.label}
+            {cfg.cta.label}
           </Link>
         </div>
       </div>
