@@ -30,7 +30,7 @@ export function Navbar() {
 
   return (
     <nav className="sticky inset-0 z-50 w-full border-b border-b-neutral-200 bg-white/80 backdrop-blur">
-      <div className="relative mx-auto flex max-w-screen-xl items-center justify-between p-4">
+      <div className="relative container mx-auto flex items-center justify-between p-4">
         <Link href="/" className="text-main text-2xl font-extrabold md:text-3xl">
           승계랜드
         </Link>
