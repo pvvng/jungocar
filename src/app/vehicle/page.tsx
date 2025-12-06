@@ -21,6 +21,7 @@ export default async function Cars({ searchParams }: Iparms) {
       <DimmedImageBanner
         title="리스 차량 소개"
         descriptions={["텍스트를 입력하세요.", "(배너 배경으로 이미지 애니메이션)"]}
+        imageSrc=""
       />
 
       <SectionWrapper type="white" className="space-y-8">
