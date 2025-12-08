@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 interface DimmedImageBannerProps {
@@ -17,6 +17,7 @@ export function DimmedImageBanner({
   imageSrc,
   imageClassName = "",
 }: DimmedImageBannerProps) {
+  const [loading, setLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export function DimmedImageBanner({
         ease: "power3.out",
       },
     );
-  }, []);
+  }, [loading]);
 
   return (
     <div
@@ -70,6 +71,7 @@ export function DimmedImageBanner({
         className={`z-0 object-cover ${imageClassName}`}
         priority
         draggable={false}
+        onLoadingComplete={() => setLoading(true)}
       />
     </div>
   );
