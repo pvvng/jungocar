@@ -1,23 +1,17 @@
 import Link from "next/link";
 import { ImageSpace } from "./ImageSpace";
-import { formatNumber } from "@/utils/formatNumber";
 import { Vehicle } from "@/types/vehicle";
+import { formatNumber } from "@/utils/formatNumber";
 
-export function VehicleCard(props: Vehicle) {
+export function VehiclePreviewCard(props: Vehicle) {
   const { id, title, year, price, mileage, fuelType, gearType, color } = props;
 
   return (
-    <Link
-      href={`/vehicle/${id}`}
-      className="flex items-center gap-3 transition hover:scale-95 sm:flex-col sm:items-start sm:gap-2"
-    >
-      {/* 이미지 */}
-      <div className="size-32 shrink-0 sm:h-60 sm:w-full">
+    <Link href="/vehicle/1" className="block transition hover:scale-95">
+      <div className="aspect-video lg:aspect-5/4">
         <ImageSpace />
       </div>
-
-      {/* 텍스트 */}
-      <div className="w-full sm:px-1 sm:pt-2">
+      <div className="px-2 pt-4">
         <p className="text-lg font-semibold">{title}</p>
         <p className="text-sm text-neutral-600 sm:text-base">
           {year}년 · {formatNumber(mileage)}km · {fuelType} · {gearType} · {color}

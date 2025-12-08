@@ -1,4 +1,3 @@
-import { Card } from "@/components/Card";
 import CarTypeSlider from "@/components/CarTypeSlider";
 import { DimmedImageBanner } from "@/components/DimmedImageBanner";
 import Pagination from "@/components/Pagination";
@@ -42,7 +41,7 @@ export default async function Cars({ searchParams }: Iparms) {
       />
 
       <SectionWrapper type="white" className="space-y-8">
-        <CarTypeSlider />
+        {/* <CarTypeSlider /> */}
         <div className="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center">
           <p className="text-neutral-700">
             총 <span className="font-semibold text-neutral-950">2000</span>대의 차량이 있습니다.

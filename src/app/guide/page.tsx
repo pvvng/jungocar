@@ -126,11 +126,11 @@ export default function LeaseGuidePage() {
           </div>
 
           <div className="mt-4 rounded-2xl border border-dashed border-gray-200 bg-white p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-neutral-700">
                 더 상세한 절차나 비용은 상담을 통해 확인해보세요.
               </p>
-              <Link href="/inquiry" className="text-main text-sm font-medium">
+              <Link href="/inquiry" className="text-main mt-2 text-sm font-medium sm:mt-0">
                 상담 신청하기 →
               </Link>
             </div>
@@ -139,7 +139,7 @@ export default function LeaseGuidePage() {
       </SectionWrapper>
 
       {/* FAQ / CTA */}
-      <SectionWrapper type="white" className="!pt-0 text-start">
+      <SectionWrapper type="white" className="pt-0! text-start">
         <h3 className="mb-6 text-xl font-bold">자주 묻는 질문</h3>
         <div className="space-y-4">
           <details>
