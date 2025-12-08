@@ -1,7 +1,7 @@
 "use client";
 
-import Carousel from "./Carousel";
-import { ImageSpace } from "./ImageSpace";
+import Carousel from "../Carousel";
+import { ImageSpace } from "../ImageSpace";
 
 export function CarouselBanner() {
   return (

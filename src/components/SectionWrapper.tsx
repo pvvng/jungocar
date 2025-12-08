@@ -3,9 +3,10 @@ interface SectionWrapperProps {
   type: "white" | "gray" | "main";
   className?: string;
   children: React.ReactNode;
+  ref?: React.RefObject<HTMLElement | null>;
 }
 
-export function SectionWrapper({ id, type, className = "", children }: SectionWrapperProps) {
+export function SectionWrapper({ id, type, className = "", children, ref }: SectionWrapperProps) {
   // type에 따른 배경/텍스트 색상 결정
   const baseClass = "relative mx-auto container px-4 py-12 text-center";
   const typeClass = (() => {
@@ -20,7 +21,7 @@ export function SectionWrapper({ id, type, className = "", children }: SectionWr
   })();
 
   return (
-    <section id={id} className={typeClass}>
+    <section id={id} className={typeClass} ref={ref}>
       <div className={`${baseClass} ${className}`}>{children}</div>
     </section>
   );

@@ -2,11 +2,12 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
-import gsap from "gsap";
 import { HandCoins, ReceiptText, ArrowRightLeft, User, Clock, Check } from "lucide-react";
 import { DimmedImageBanner } from "@/components/DimmedImageBanner";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 type Mode = "complete" | "consign" | null;
 
@@ -15,42 +16,7 @@ export default function LeaseGuidePage() {
 
   const activeMatch: Mode = (SCENARIOS.find((s) => s.id === selectedId) || null)?.match ?? null;
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
-
-  // 카드 스테거 등장
-  // replace your current card-entry useEffect with this
-  useLayoutEffect(() => {
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      // 바로 보이도록 설정
-      const cards = containerRef.current?.querySelectorAll(".scenario-card");
-      cards?.forEach((c) => {
-        (c as HTMLElement).style.opacity = "1";
-        (c as HTMLElement).style.transform = "none";
-      });
-      return;
-    }
-    if (!containerRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".scenario-card") as Element[];
-      if (!cards.length) return;
-
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.to(cards, {
-        y: 0,
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.6,
-        stagger: { each: 0.08, from: "start" },
-        ease: "elastic.in",
-        force3D: true,
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   // 패널 슬라이드 인 (activeMatch 변경에 따라)
   useLayoutEffect(() => {
@@ -93,47 +59,45 @@ export default function LeaseGuidePage() {
       />
 
       <SectionWrapper type="white" className="text-start">
-        <div ref={containerRef}>
-          <div className="mb-2 flex items-center gap-3">
-            <ArrowRightLeft className="size-6" />
-            <h2 className="text-2xl font-bold">어떤 승계가 내게 적합할까요?</h2>
-          </div>
-          <p className="mb-5 text-sm text-neutral-600">내 상황에 맞는 카드를 골라보세요.</p>
+        <div className="mb-2 flex items-center gap-3">
+          <ArrowRightLeft className="size-6" />
+          <h2 className="text-2xl font-bold">어떤 승계가 내게 적합할까요?</h2>
+        </div>
+        <p className="mb-5 text-sm text-neutral-600">내 상황에 맞는 카드를 골라보세요.</p>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {SCENARIOS.map((s, i) => (
-              <ScenarioCard
-                key={s.id}
-                index={i}
-                id={s.id}
-                title={s.title}
-                subtitle={s.subtitle}
-                hint={s.hint}
-                icon={s.icon}
-                active={selectedId === s.id}
-                onClick={() => setSelectedId((cur) => (cur === s.id ? null : s.id))}
-              />
-            ))}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {SCENARIOS.map((s, i) => (
+            <ScenarioCard
+              key={s.id}
+              index={i}
+              id={s.id}
+              title={s.title}
+              subtitle={s.subtitle}
+              hint={s.hint}
+              icon={s.icon}
+              active={selectedId === s.id}
+              onClick={() => setSelectedId((cur) => (cur === s.id ? null : s.id))}
+            />
+          ))}
+        </div>
+        <div className="mt-4">
+          <div
+            ref={panelRef}
+            className="relative h-full overflow-hidden rounded-2xl"
+            style={{ opacity: 1, transform: "translateX(0px)" }}
+          >
+            <RecommendationPanel selectedId={selectedId} />
           </div>
-          <div className="mt-4">
-            <div
-              ref={panelRef}
-              className="relative h-full overflow-hidden rounded-2xl"
-              style={{ opacity: 1, transform: "translateX(0px)" }}
-            >
-              <RecommendationPanel selectedId={selectedId} />
-            </div>
-          </div>
+        </div>
 
-          <div className="mt-4 rounded-2xl border border-dashed border-gray-200 bg-white p-4">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-neutral-700">
-                더 상세한 절차나 비용은 상담을 통해 확인해보세요.
-              </p>
-              <Link href="/inquiry" className="text-main mt-2 text-sm font-medium sm:mt-0">
-                상담 신청하기 →
-              </Link>
-            </div>
+        <div className="mt-4 rounded-2xl border border-dashed border-gray-200 bg-white p-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-neutral-700">
+              더 상세한 절차나 비용은 상담을 통해 확인해보세요.
+            </p>
+            <Link href="/inquiry" className="text-main mt-2 text-sm font-medium sm:mt-0">
+              상담 신청하기 →
+            </Link>
           </div>
         </div>
       </SectionWrapper>
@@ -251,14 +215,6 @@ function ScenarioCard({
       className={`scenario-card relative w-full transform-gpu cursor-pointer overflow-hidden rounded-2xl border border-neutral-100 p-4 shadow transition-all ${
         active ? "bg-main/20 border-main/20" : "hover:bg-neutral-100"
       }`}
-      style={{
-        opacity: 0,
-        transform: "translateY(18px) scale(0.96)",
-        willChange: "transform, opacity",
-        backfaceVisibility: "hidden",
-        WebkitBackfaceVisibility: "hidden",
-        transformOrigin: "center",
-      }}
       aria-pressed={active}
       data-index={index}
       data-id={id}
@@ -340,7 +296,7 @@ function RecommendationPanel({ selectedId }: { selectedId: string | null }) {
 
   return (
     <div
-      className={`relative flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br ${cfg.color} shadow`}
+      className={`relative flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border border-gray-200 bg-linear-to-br ${cfg.color} shadow`}
     >
       {/* 상단 콘텐츠 */}
       <div className="relative z-10 p-6">
